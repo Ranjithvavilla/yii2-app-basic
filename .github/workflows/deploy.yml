@@ -21,13 +21,13 @@ jobs:
 
     - name: Push image
       run: docker push ${{ secrets.DOCKER_USERNAME }}/yii2-app:latest
-
+      
     - name: SSH & Deploy
       uses: appleboy/ssh-action@v1.0.0
       with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          docker pull ${{ secrets.DOCKER_USERNAME }}/yii2-app:latest
-          docker service update --image ${{ secrets.DOCKER_USERNAME }}/yii2-app:latest yii2_app
+       host: ${{ secrets.EC2_HOST }}
+       username: ${{ secrets.EC2_USER }}
+       key: ${{ secrets.EC2_SSH_KEY }}
+       script: |
+         docker pull ${{ secrets.DOCKER_USERNAME }}/yii2-app:latest
+         docker service update --image ${{ secrets.DOCKER_USERNAME }}/yii2-app:latest yii2_app
